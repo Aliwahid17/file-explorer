@@ -2,5 +2,5 @@
 /constant
 db.sqlite3
 /data
-/__pycache__
-/migrations
+*/__pycache__
+*/migrations
