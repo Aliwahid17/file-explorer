@@ -1,11 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap');
 
 
+
+:root {
+    --tw-size-4: 1rem;
+    --tw-size-36: 9rem;
+    --tw-border-radius-lg: 0.5rem;
+    --tw-bg-opacity: 1;
+    --tw-text-opacity: 1;
+    --tw-color-slate-100: 241 245 249;
+    --tw-font-weight-medium: 500;
+    --tw-color-gray-900: 17 24 39;
+    --tw-color-red-400: 248 113 113;
+}
+
 * {
     margin: 0px;
     padding: 0px;
     font-family: 'Open Sans';
     background-color: #212529;
+    color : #94a0b4;
 }
 
 

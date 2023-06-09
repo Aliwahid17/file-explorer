@@ -1,0 +1,34 @@
+{% load static %}
+
+{% block tag %}
+<link rel="stylesheet" href="{% static 'css/file.css' %}">
+{% endblock tag %}
+
+<div class="grid-container">
+
+    <div class="first-box">
+
+        <div class="file-name-container">
+
+            <div class="folder-name">
+                <img src="{% static 'assets/collection.svg' %}" alt="collection" width="25" height="25">
+                <h3><b>Select Atleast 1 Folder</b></h3>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="second-box">
+
+        <div class="path-name-container">
+
+            <div class="path-name">
+                <img src="{% static 'assets/link.svg' %}" alt="Link" width="25" height="25">
+                <h3><b>Select Atleast 1 File</b></h3>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

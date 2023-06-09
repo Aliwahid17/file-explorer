@@ -1,8 +1,45 @@
 {% extends 'components/base.html' %}
+{% load static %}
 
+{% block tag %}
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+<script src="{% static 'js/index.js' %}" defer></script>
+<script>
+    window.dataJSON = JSON.parse('{{ data_json|escapejs }}')
+</script>
+{% endblock tag %}
 
 {% block content %}
 
+<div class="option-container">
+
+    <div class="option-flex">
+        <div class="option-box" data-active="true">
+            <div class="option-div">
+                <img src="{% static 'assets/folder.svg' %}" alt="Folder" width="45" height="45" class="option-img">
+                <span class="option-span"> Folder </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="option-flex">
+        <div class="option-box" data-active="false">
+            <div class="option-div">
+                <img src="{% static 'assets/file.svg' %}" alt="Tree" width="45" height="45" class="option-img">
+                <span class="option-span" style="margin-left: 14px;"> Files </span>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div id="folder">
+    {% include 'components/folder.html' %}
+</div>
+
+<div id="file" style="display: none;" >
+    {% include 'components/file.html' %}
+</div>
 
 
 {% endblock content %}

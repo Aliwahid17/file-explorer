@@ -1,0 +1,32 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    padding: 30px;
+}
+
+.first-box,
+.second-box {
+    border: 1px solid #94a0b4;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.file-name-container,
+.path-name-container {
+    padding: 15px;
+}
+
+.folder-name,
+.path-name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.file-name {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 5px;
+}
