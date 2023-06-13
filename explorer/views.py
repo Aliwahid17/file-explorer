@@ -1,61 +1,40 @@
 from django.shortcuts import render
 from django.http import JsonResponse
-from .models import Folder, File
-import re
-from json import dumps, loads
+from json import loads
+from .file import get_max_depth , get_folder
 
 # Create your views here.
 
+# Root Dictory Config 
+path = "D:\\freelance\\file-filter-app\\dummy_folder"
 
 def home(request):
 
   
     if request.method == "POST":
         content = loads(request.body)
-        selected_Folder = content["folder"]
-
-        folder_dict = {}
 
         try:
+            selected_level = content['level']
+            folder = get_folder( selected_level , path)
+            return JsonResponse(folder)
+        except :
+            print("No Level")
 
-            folder_dict = {
-                folder: {
-                    "file": [
-                        file.name
-                        for file in File.objects.filter(
-                            parent=Folder.objects.get(name=folder).pk
-                        )
-                    ],
-                    "path" : [str(file.file)[4:]
-                        for file in File.objects.filter(
-                            parent=Folder.objects.get(name=folder).pk
-                        )]
-                }
-                for folder in selected_Folder.split(",")
-            }
-
-            print(folder_dict)
-            return JsonResponse(folder_dict)
-    
+        try:
+            selected_path = content['path']
+            for i in selected_path:
+                print(i)
         except:
+            print("No Path")
 
-            return JsonResponse(folder_dict)
 
-    folder_data = {
-        str(folder.pk): {
-            "name": folder.name,
-            "parent": "" if folder.parent is None else str(folder.parent.pk),
-            "files": 0
-            if folder.parent is None
-            else File.objects.filter(parent=folder.parent.pk).count(),
-        }
-        for folder in Folder.objects.all()
+    data = {
+        'level' : range(1 , get_max_depth(path) + 1)
     }
-
-    data_json = dumps(folder_data)
 
     return render(
         request,
         "routes/index.html",
-        context={"data_json": data_json},
+        context={'data' : data},
     )
