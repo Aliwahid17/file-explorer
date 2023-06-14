@@ -332,7 +332,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }, 300);
     });
 
-    document.querySelectorAll('.selectMultiple > div .arrow, .selectMultiple > div span').forEach((el) => {
+    document.querySelectorAll('.selectMultiple  > ul > li').forEach((el) => {
         el.addEventListener('click', (e) => {
             el.closest('.selectMultiple').classList.toggle('open');
         });
@@ -352,13 +352,22 @@ document.addEventListener('DOMContentLoaded', function () {
             relatedDiv.style.display = relatedDiv.style.display === 'none' ? '' : 'none';
 
         }
-
     });
 
     const sendBtn = document.getElementById('send')
 
     sendBtn.addEventListener('click' , function() {
             pathAjax(pathValue)
+    })
+
+    const openSelect = document.querySelector('.selectMultiple')
+
+    openSelect.addEventListener('click' , function() {
+        if(!openSelect.classList.contains('open')){
+            openSelect.classList.add('open')
+        }else{
+            openSelect.classList.remove('open')
+        }
     })
 
 
