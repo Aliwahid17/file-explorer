@@ -7,17 +7,19 @@
 
 <!-- HTML !-->
 
-<div class="body">
 
-    <select multiple data-placeholder="Select Level">
-        {% for i in data.level %}
-        <option value="{{i}}">Level {{i}}</option>
-        {% endfor %}
-    </select>
+    <div class="body">
+
+      <button class="button-85" id="send" role="button" style="margin-top: 15px;" >Send</button>
+
+        <select multiple data-placeholder="Select Level">
+            {% for i in data.level %}
+            <option value="{{i}}">Level {{i}}</option>
+            {% endfor %}
+        </select>
 
 
-</div>
-
+    </div>
 
 
 <div class="grid-container">

@@ -353,13 +353,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
         }
 
-        if (pathValue.length !== 0) {
-            pathAjax(pathValue)
-        }
-
     });
 
+    const sendBtn = document.getElementById('send')
 
+    sendBtn.addEventListener('click' , function() {
+            pathAjax(pathValue)
+    })
 
 
 
