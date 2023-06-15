@@ -52,6 +52,7 @@ function dataAjax(value) {
                         `         
                 <div class="file-name-container">
                 <div class="folder-name">
+                <input type="checkbox" name="folder-name" class="folder-input" data-value="${key.split('\\').pop()}" data-path="${key}"  >
                 <button type="button" class="toggle" style="all:unset; display:flex ; justify-content: center;align-items: center; " data-active="false" >
                     <img src="/static/assets/arrow.svg" alt="arrow" width="25" height="25" style="pointer-events: none;">
                 </button>
@@ -86,14 +87,18 @@ function dataAjax(value) {
                     .join('');
             }
 
-            const fileInput = document.querySelectorAll('.file-input')
+            const fileInput = document.querySelectorAll('.file-input , .folder-input')
             const secondBox = document.getElementsByClassName('second-box')[0]
+
+            const fileExtensionPattern = /\.[0-9a-z]+$/i;
 
 
             fileInput.forEach((value, index) => {
                 value.addEventListener('click', function () {
                     value.checked ? totalPath.push(value.dataset.value) : totalPath.splice(totalPath.indexOf(value.dataset.value), 1)
                     value.checked ? pathValue.push(value.dataset.path) : pathValue.splice(pathValue.indexOf(value.dataset.path), 1)
+
+                    console.log('first')
 
                     if (totalPath.length === 0) {
 
@@ -116,7 +121,7 @@ function dataAjax(value) {
                         secondBox.innerHTML = totalPath.map(((item) => `
                   
                     <div class="file-name" style="padding : 10px;">
-                        <img src="/static/assets/file.svg" alt="file" width="25" height="25">
+                        ${fileExtensionPattern.test(item) ? `<img src="/static/assets/file.svg" alt="file" width="25" height="25">` : `<img src="/static/assets/collection.svg" alt="collection" width="25" height="25">`}
                         <span>${item}</span>
                     </div>
                  
@@ -238,7 +243,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 select.querySelector('span').classList.add('hide');
 
             }, 300);
-  
+
             setTimeout(() => {
                 let styles = window.getComputedStyle(li);
                 let liHeight = styles.height;
@@ -265,8 +270,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     li.remove();
                     select.classList.remove('clicked');
                 }
- 
-            }, 300); 
+
+            }, 300);
 
         }
     });
@@ -332,13 +337,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }, 300);
     });
 
-    document.querySelectorAll('.selectMultiple  > ul > li').forEach((el) => {
-        el.addEventListener('click', (e) => {
-            el.closest('.selectMultiple').classList.toggle('open');
-        });
-    });
-
-
 
 
     document.addEventListener('click', function (e) {
@@ -356,21 +354,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const sendBtn = document.getElementById('send')
 
-    sendBtn.addEventListener('click' , function() {
-            pathAjax(pathValue)
+    sendBtn.addEventListener('click', function () {
+        pathAjax(pathValue)
     })
 
     const openSelect = document.querySelector('.selectMultiple')
 
-    openSelect.addEventListener('click' , function() {
-        if(!openSelect.classList.contains('open')){
+    openSelect.addEventListener('click', function () {
+        if (!openSelect.classList.contains('open')) {
             openSelect.classList.add('open')
-        }else{
+        } else {
             openSelect.classList.remove('open')
         }
     })
-
-
 
 })
 

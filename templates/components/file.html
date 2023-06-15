@@ -12,12 +12,17 @@
 
       <button class="button-85" id="send" role="button" style="margin-top: 15px;" >Send</button>
 
-        <select multiple data-placeholder="Select Level">
-            {% for i in data.level %}
-            <option value="{{i}}">Level {{i}}</option>
-            {% endfor %}
-        </select>
+      <div style="margin-top: 10px;">
 
+        <span style="padding: 8px 12px 2px 12px;" >Click here to add filter</span>
+
+          <select multiple data-placeholder="Select Level">
+              {% for i in data.level %}
+              <option value="{{i}}">Level {{i}}</option>
+              {% endfor %}
+            </select>
+            
+        </div>
 
     </div>
 
