@@ -338,6 +338,17 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
 
+    const openSelect = document.querySelector('.selectMultiple')
+
+    openSelect.addEventListener('click', function () {
+        if (!openSelect.classList.contains('open')) {
+            openSelect.classList.add('open')
+        } else {
+            openSelect.classList.remove('open')
+        }
+    })
+
+
 
     document.addEventListener('click', function (e) {
         if (e.target.classList.contains('toggle')) {
@@ -350,6 +361,10 @@ document.addEventListener('DOMContentLoaded', function () {
             relatedDiv.style.display = relatedDiv.style.display === 'none' ? '' : 'none';
 
         }
+        if (openSelect.classList.contains('open') && !openSelect.contains(e.target) && e.target !== openSelect) {
+            openSelect.classList.remove('open')
+        }
+
     });
 
     const sendBtn = document.getElementById('send')
@@ -358,15 +373,7 @@ document.addEventListener('DOMContentLoaded', function () {
         pathAjax(pathValue)
     })
 
-    const openSelect = document.querySelector('.selectMultiple')
 
-    openSelect.addEventListener('click', function () {
-        if (!openSelect.classList.contains('open')) {
-            openSelect.classList.add('open')
-        } else {
-            openSelect.classList.remove('open')
-        }
-    })
 
 })
 
