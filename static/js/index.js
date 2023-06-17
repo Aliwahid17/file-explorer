@@ -36,6 +36,7 @@ function dataAjax(value) {
 
             const firstBox = document.getElementsByClassName('first-box')[0]
             let totalPath = []
+            let filterPath;
 
             if (typeof window.fileData === "undefined" || Object.values(window.fileData).length === 0) {
 
@@ -50,8 +51,8 @@ function dataAjax(value) {
                     .map(([key, value]) =>
 
                         `         
-                <div class="file-name-container">
-                <div class="folder-name">
+                <div class="file-name-container" >
+                <div class="folder-name" data-path="${key}" >
                 <input type="checkbox" name="folder-name" class="folder-input" data-value="${key.split('\\').pop()}" data-path="${key}"  >
                 <button type="button" class="toggle" style="all:unset; display:flex ; justify-content: center;align-items: center; " data-active="false" >
                     <img src="/static/assets/arrow.svg" alt="arrow" width="25" height="25" style="pointer-events: none;">
@@ -87,6 +88,8 @@ function dataAjax(value) {
                     .join('');
             }
 
+
+
             const fileInput = document.querySelectorAll('.file-input , .folder-input')
             const secondBox = document.getElementsByClassName('second-box')[0]
 
@@ -94,18 +97,27 @@ function dataAjax(value) {
 
 
             fileInput.forEach((value, index) => {
-                value.addEventListener('click', function () {
+                value.addEventListener('click', function (e) {
                     value.checked ? totalPath.push(value.dataset.value) : totalPath.splice(totalPath.indexOf(value.dataset.value), 1)
                     value.checked ? pathValue.push(value.dataset.path) : pathValue.splice(pathValue.indexOf(value.dataset.path), 1)
 
-                    console.log('first')
+                    const v = document.querySelectorAll('.file-name-container')
+
+                    v.forEach((values, index) => {
+                        if (value.checked && !values.childNodes[1].dataset.path.includes(value.dataset.path)) {
+                            values.style.display = 'none'
+                        }
+                    })
+
+
+
 
                     if (totalPath.length === 0) {
 
                         secondBox.innerHTML = `
                         <div class="path-name-container">
                         <div class="path-name">
-                <img src="/static/assets/link.svg" alt="Link" width="25" height="25">
+                <img src="/static/assets/file.svg" alt="file" width="25" height="25">
                 <h3><b>Select Atleast 1 File</b></h3>
             </div> 
             </div> 
