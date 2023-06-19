@@ -104,9 +104,9 @@ function dataAjax(value) {
                     const v = document.querySelectorAll('.file-name-container')
 
                     v.forEach((values, index) => {
-                        if (value.checked && !values.childNodes[1].dataset.path.includes(value.dataset.path)) {
+                        if (value.checked && !values.childNodes[1].dataset.path.includes(value.dataset.path) && !fileExtensionPattern.test(value.dataset.path) ) {
                             values.style.display = 'none'
-                        }
+                        } 
                     })
 
 
